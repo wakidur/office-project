@@ -72,7 +72,7 @@ var editTask = function () {
     if (containsClass) {
         label.innerText = editInput.value;
         labeldes.innerText = editdesInput.value;
-        console.log("If")
+        console.log("If condition")
     } else {
         editInput.value = label.innerText;
         editdesInput.value = labeldes.innerText;
