@@ -1,1 +1,1 @@
-Practice parpase
+A practice git repository
