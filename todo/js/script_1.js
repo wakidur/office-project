@@ -15,11 +15,18 @@ function checkEmail(email){
 var inputFormsection = document.getElementById('subscribe_frm');
 var showButtom = document.getElementById('add-btn');
 var hideButtom = document.getElementById('nosub');
+var create = document.getElementById('submit');
+var edit = document.getElementById('edit');
 var todo = [];
 var localhtml = "";
+var editIndex;
 
 function showhideContain(){
     var vis = inputFormsection.style;
+    document.getElementById('title').value = '';
+    document.getElementById('description').value = '';
+    create.style.display = "block";
+    edit.style.display = "none";
     if(vis.display == '' || vis.display == 'none'){
         console.log("if condetion");
         vis.display = 'block';
@@ -90,7 +97,7 @@ function processFormData() {
                          '</div>'+
                          '<div class="function-box">'+
                               '<input type="checkbox">'+
-                             '<button class="edit" onclick="editTask()">'+
+                             '<button class="edit" onclick="editTask('+i+')">'+
                                   '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>'+
                               '</button>'+
                              '<button class="delete">'+
@@ -104,7 +111,7 @@ function processFormData() {
    
 window.onload = function() 
    {
-       
+      localhtml = ''; 
     var data = window.localStorage.getItem('todo');
           data = JSON.parse(data);
           console.log(data.title + " " + data.description);
@@ -118,7 +125,7 @@ window.onload = function()
                        '</div>'+
                        '<div class="function-box">'+
                             '<input type="checkbox">'+
-                           '<button class="edit" onclick="editTask(this)">'+
+                           '<button class="edit" onclick="editTask('+i+')">'+
                                 '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>'+
                             '</button>'+
                            '<button class="delete">'+
@@ -133,7 +140,31 @@ window.onload = function()
 //var myThis = " ";
 //var listItem = document.createElement("li");
    // Edit an existing task
-function editTask(contex) {
+   
+   
+function processFormDataEdit(){
+    console.log(editIndex);
+    var title = document.getElementById('title').value;
+    var description = document.getElementById('description').value;
+    todo = JSON.parse(localStorage.todo);
+    todo[editIndex].title = title;
+    todo[editIndex].description = description;
+    localStorage.setItem('todo', JSON.stringify(todo));
+    showhideContain();
+    onload();
+}   
+function editTask(index) {
+    
+    create.style.display = "none";
+    edit.style.display = "block";
+    
+    inputFormsection.style.display = "block";
+    todo = JSON.parse(localStorage.todo);
+    document.getElementById('title').value = todo[index].title;
+    document.getElementById('description').value = todo[index].description;
+    editIndex = index;
+    
+    /*
   console.log("Edit Task...");
   
   var listItem = contex.parentNode.parentNode;
@@ -142,8 +173,8 @@ function editTask(contex) {
     console.log(listItem);
 
   
-  var h = listItem.querySelectorAll("h2");
-  var p = listItem.querySelectorAll("p");
+  var h = listItem.querySelector("h2");
+  var p = listItem.querySelector("p");
 
   
   var containsClass = listItem.classList.contains("editMode");
@@ -159,22 +190,11 @@ function editTask(contex) {
       //input value becomes the label's text
     //editInput.value = h.innerText;
     //editdesInput.value = p.innerText;
-    console.log("H2" + h.innerText + "\n" + "P:" + p.innerText );
+    console.log("H2" + h.innerHTML + "\n" + "P:" + p.innerHTML );
   }
   
     // Toggle .editMode on the parent
   listItem.classList.toggle("editMode");
- 
+ */
 }
 
-var obj = {
-    name : "Wakidur",
-    dob : new Date("1990-1-12")
-}
-
-Object.defineProperty(obj, 'age' , {
-    get: function(){
-        return (new Date().getFullYear() - this.dob.getFullYear());
-    }
-    
-});

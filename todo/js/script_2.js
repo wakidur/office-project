@@ -30,6 +30,7 @@ function init() {
     var newMyObject = JSON.parse(newGetJson);
     console.log("Name: " + newMyObject.name + "\n" + "Age: " + newMyObject.age + "\n" + "Department: " + newMyObject.department )
     
+    //var myNewobj = new Object();
     var myNewobj = {};
         myNewobj.name = "Wakdur Rahman";
         myNewobj.age = 28;
@@ -39,21 +40,7 @@ function init() {
     var newGetJson = localStorage.getItem('mynew');
     var newMyObject = JSON.parse(newGetJson);
     console.log("Name: " + newMyObject.name + "\n" + "Age: " + newMyObject.age + "\n" + "Department: " + newMyObject.department )
+    
         
 }
 
-
-
-
-
-var obj = {
-    name : "Wakidur",
-    dob : new Date("1990-1-12")
-}
-
-Object.defineProperty(obj, 'age' , {
-    get: function(){
-        return (new Date().getFullYear() - this.dob.getFullYear());
-    }
-    
-});
