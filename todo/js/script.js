@@ -85,12 +85,15 @@ var editTask = function () {
 
 
 // Delete an existing task
+
 var deleteTask = function () {
     console.log("Delete task...");
     var listItem = this.parentNode;
     var ul = listItem.parentNode;
     ul.removeChild(listItem);
 };
+
+
 
 // Mark a task as complete 
 var taskCompleted = function () {
