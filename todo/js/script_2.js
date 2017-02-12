@@ -29,7 +29,7 @@ function showProps(obj, objectName){
     return result; // return value
     console.log(result); // for console parpase
 }
-
+/*
 window.onload = init;
 
 function init() {
@@ -49,7 +49,7 @@ function init() {
     
     //var myNewobj = new Object();
     
-    /*
+   
     var myNewobj = {};
         myNewobj.name = "Wakdur Rahman";
         myNewobj.age = 28;
@@ -59,9 +59,10 @@ function init() {
     var newGetJson = localStorage.getItem('mynew');
     var newMyObject = JSON.parse(newGetJson);
     console.log("Name: " + newMyObject.name + "\n" + "Age: " + newMyObject.age + "\n" + "Department: " + newMyObject.department );
-    */
+  
      
 }
+*/
 
 //step 2 
 //Global variable ;
@@ -88,6 +89,7 @@ function getTodoItems() {
     if (localStorage) {
         for (var i = 0; i < localStorage.length; i++) {
             var key = localStorage.key(i);
+            console.log("Key" + key);
             if (key.substring(0, 4) == "todo") {
                 var item = localStorage.getItem(key);
                 var todoItem = JSON.parse(item);
@@ -95,8 +97,7 @@ function getTodoItems() {
            }
         }
         addTodosToPage();
-    }
-    else {
+    } else {
         console.log("Error: you don't have localStorage!");
     }
 }

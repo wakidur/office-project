@@ -61,7 +61,9 @@ for (var i in human){
 }
 
 
-
+function listAllProperties(o) {
+    var 
+}
 
 
 
