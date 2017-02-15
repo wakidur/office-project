@@ -157,13 +157,177 @@ function calculator(){
         return a + b;
     }    
 }
-
 //var mycal =  new calculator();
 
 function superCaltularo () {
     
 }
-
-
 superCaltularo.prototype = new calculator();
+
+superCaltularo.prototype.add = function(){
+    
+}
 superCaltularo.add(5,5);
+
+
+
+
+
+//------------
+//First-class functions and closures do the job.
+function add(x) {
+    return function(y) {
+        return x + y;
+    }
+}
+
+function add(x){
+    return function(y) {
+        if(typeof y !== 'undefined'){
+            x = x + y;
+            return arguments.callee;
+        } else {
+            return x;
+        }
+    };
+}
+add(1)(2)(3)(); //6
+add(1)(1)(1)(1)(1)(1)(); //6
+
+//try this will help you in two ways add(2)(3) and add(2,3)
+
+function add(a) {
+    return function(b){
+        return a + b;
+    }
+}
+add(2)(3);
+
+function add(a,b){
+    var ddd = function(b) {
+        return a + b;
+    };
+    if(typeof b == 'undefined'){
+        return ddd;
+    } else {
+        return add(b);
+    }
+}
+add(2)(3) // 5
+add(2,3) // 5
+
+//----------------------------------
+
+
+function SimpleCalculator() { //Class
+    this.name = 'SimpleCalculator' //
+}
+
+SimpleCalculator.prototype.add = function (a, b) {
+    return a + b;
+};
+
+function SuperCalculator() { //Class
+    this.name = 'SuperCalculator'
+}
+
+SuperCalculator.prototype = new SimpleCalculator(); // inheritance
+
+SuperCalculator.prototype.add = function (a) {
+    if (arguments.length == 1) {
+        return function (b) {
+//console.log('b',b);
+            if (typeof b !== 'undefined') {
+                a += b;
+                return arguments.callee;
+                //return two;
+            } else {
+                return a;
+            }
+        }
+    } else {
+        var sum = 0;
+        for (var i = 0; i < arguments.length; i++) {
+            sum += arguments[i];
+        }
+        return sum;
+    }
+};
+
+//inhering SimpleCalculator
+var newOutput = new SuperCalculator(); //creating new SuperCalculator Instance
+console.log(newOutput.add(17, 3, 1));
+console.log(newOutput.add(17)(3)(1)())
+//================================
+
+function problem(a,b){
+    this.a = a;
+    this.b = b;
+    this.add = function(){
+        return this.a + this.b;
+    };  
+}
+//var problem1 = new problem(4,2);
+
+function superCal(){
+    this.name = "kdjf";
+}
+superCal.prototype = new problem();
+superCal.prototype.add = function(a){
+    if (arguments.length == 1) {
+        return function (b) {
+            if (typeof b !== 'undefined') {
+                a += b;
+                return arguments.callee;
+            } else {
+                return a;
+            }
+        }
+    } else {
+        var sum = 0;
+        for (var i = 0; i < arguments.length; i++) {
+            sum += arguments[i];
+        }
+        return sum;
+    }
+};
+var newOutput = new superCal(); //creating new SuperCalculator Instance
+console.log(newOutput.add(17, 3, 1));
+console.log(newOutput.add(17)(3)(1)())
+
+//--------------------------------------
+function problem(a,b){
+    this.a = a;
+    this.b = b;
+    this.add = function(){
+        return this.a + this.b;
+    };  
+}
+//var problem1 = new problem(4,2);
+
+function superCal(){
+    this.name = "kdjf";
+}
+superCal.prototype = new problem();
+superCal.prototype.add = function(a){
+    if (arguments.length == 1) {
+        console.log(arguments.length);
+        return function (b) {
+            if (typeof b !== 'undefined') {
+                a += b;
+                return arguments.callee;
+            } else {
+                return a;
+            }
+        }
+    } else {
+        var sum = 0;
+        for (var i = 0; i < arguments.length; i++) {
+            sum += arguments[i];
+        }
+        return sum;
+    }
+};
+var newOutput = new superCal(); //creating new SuperCalculator Instance
+console.log(newOutput.add(17, 3, 1));
+console.log(newOutput.add(17)(3)(1)())

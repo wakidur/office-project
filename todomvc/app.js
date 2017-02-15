@@ -42,7 +42,6 @@ function showhideContain(){
     }
 }
 function processFormData() {
-    
     var title_element = document.getElementById('title');
     var description_element = document.getElementById('description');
     
@@ -80,41 +79,13 @@ function processFormData() {
         todo.push(object);
         localStorage.setItem('todo', JSON.stringify(todo));
         console.log("success");
-        //getValue();
         onload()
         showhideContain();
         title_val = " ";
         description_val = " ";
     }
 }
-/*
-function getValue() {
-    var data = localStorage.getItem('todo');
-        data = JSON.parse(data);  
-    for (var i = 0; i <data.length; i++) 
-        {
-            console.log(data[i].title + '\n');
-          localhtml += '<li>'+
-                         '<div class="contain-box">'+
-                              '<h2>' + data[i].title + '</h2>'+
-                              '<p>'+ data[i].description+'</p>'+
-                         '</div>'+
-                         '<div class="function-box">'+
-                              '<input type="checkbox">'+
-                             '<button class="edit" onclick="editTask('+i+')">'+
-                                  '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>'+
-                              '</button>'+
-                             '<button class="delete" id="delete" onclick="deleteTask('+i+')">'+
-                                  '<i class="fa fa-trash" aria-hidden="true"></i>'+
-                              '</button>'+
-                          '</div>'+
-                      '</li>'
-        }
-    document.getElementById("incomplete-tasks").innerHTML = localhtml;
-} 
-*/
 function processFormDataEdit(){
-    //console.log(editIndex);
     var title = document.getElementById('title').value;
     var description = document.getElementById('description').value;
     todo = JSON.parse(localStorage.todo);
@@ -125,7 +96,6 @@ function processFormDataEdit(){
     onload();
 }   
 function editTask(index) {
-    //console.log(index);
     create.style.display = "none";
     edit.style.display = "block";
     inputFormsection.style.display = "block";
@@ -134,13 +104,9 @@ function editTask(index) {
     document.getElementById('description').value = todo[index].description;
     editIndex = index; 
 }
-
-
 function deleteTask(index){
     var list = document.getElementById('delete');
     var parent = list.parentNode.parentNode;
-    //console.log(parent);
-    //console.log("Index of" + index);
     todo = JSON.parse(localStorage.todo);
     todo.splice(index,1);
     parent.remove();
@@ -149,10 +115,8 @@ function deleteTask(index){
 }
 //ChangeCheckbox
 function OnChangeCheckbox(checkbox) {
-    console.log(checkbox);
     var checkboxx = document.getElementById('myCheckbox');
     var parent = checkbox.parentNode.parentNode;
-    console.log(parent);
     if (checkbox.checked) {
        parent.classList.add("anotherclass");
        console.log("The check box is checked.");
@@ -183,69 +147,40 @@ function fullTextsearch() {
 function myRadio(val){
     var arr = [];
     var allList = document.getElementsByTagName('li');
-    for(var i = 0 ; i < allList.length ; i++){
-        console.log(allList[i]);
-        allList[i]
-    }
     var allListClass = document.getElementsByClassName('anotherclass');
-    for(var j = 0 ; j < allListClass.length ; j++){
-        console.log(allListClass[j]);
-        allListClass[j]
-    }
-    
     if(val.value == 'all'){
         for(var i = 0 ; i < allList.length ; i++){
-        console.log(allList[i]);
-         allList[i].style.display = "block";
-    }
-    for(var j = 0 ; j < allListClass.length ; j++){
-        console.log(allListClass[j]);
-       allListClass[j].style.display = "block";
-    }
-       
-        
-        console.log("All value " + val.value)
-    }  else if  (val.value == 'check') {
-         for(var i = 0 ; i < allList.length ; i++){
-        console.log(allList[i]);
-          allList[i].style.display = "none";
-    }
-     for(var j = 0 ; j < allListClass.length ; j++){
-        console.log(allListClass[j]);
-        allListClass[j].style.display = "block";  
-    }
-       
-       
+            allList[i].style.display = "block";
+        }
+        for(var j = 0 ; j < allListClass.length ; j++){
+            allListClass[j].style.display = "block";
+        } 
+    } else if  (val.value == 'check') {
+        for(var i = 0 ; i < allList.length ; i++){
+            allList[i].style.display = "none";
+        }
+        for(var j = 0 ; j < allListClass.length ; j++){
+           allListClass[j].style.display = "block";  
+        }  
         
     } else if(val.value == 'uncheck') {
-        console.log("uncheck " + val.value)
         for(var i = 0 ; i < allList.length ; i++){
-        console.log(allList[i]);
-        allList[i].style.display = "block";
-    }
-    for(var j = 0 ; j < allListClass.length ; j++){
-        console.log(allListClass[j]);
-        allListClass[j].style.display = "none";
-    }
-        
-        
-       
-       
+            allList[i].style.display = "block";
+        }
+        for(var j = 0 ; j < allListClass.length ; j++){
+            allListClass[j].style.display = "none";
+        } 
     } else{
         console.log(val.value);
-    }
-    
-    //if( )
+    }  
 }
 window.onload = function() {
     localhtml = ''; 
     if(localStorage.getItem("todo") === null) { // for initial stage todo is not present
         console.log("value no present" + todo);
     } else {
-        console.log( "no value exist" );
         var data = localStorage.getItem('todo');
         data = JSON.parse(data);
-
          // sort by name
          data.sort(function(a, b) {
            var nameA = a.title.toUpperCase(); // ignore upper and lowercase
@@ -260,10 +195,6 @@ window.onload = function() {
            return 0;
            
          });
-        console.log(data);
-        console.log(data.title + " " + data.description);
-        console.log("Sort valu" + data);
-        console.log("type of " + typeof data);
       for (var i = 0; i <data.length; i++) 
       {
           console.log(data[i].title + '\n');
@@ -286,22 +217,3 @@ window.onload = function() {
     document.getElementById("incomplete-tasks").innerHTML = localhtml;
      }
 };
-//var myCheckbos = document.querySelectorAll('input[type=checkbox]');
-//for(var i = 0 ; i < myCheckbos.length; i++){
-//    var result = 0;
-//    result += myCheckbos[i].checked;
-//    console.log("Chekbox Result" + result);
-//    }
-//if (myCheckbos.checked) {
-//       console.log("The check box is checked dddddddddddd.");
-//       for(var i = 0 ; i < myCheckbos.length; i++){
-//        var result = 0;
-//            result += myCheckbos[i].checked;
-//            console.log("Chekbox Result" + result);
-//        }
-//    }
-//    else {
-//        console.log("The check box is not checked.");
-//    }
-
-//document.querySelectorAll('li.anotherclass');
