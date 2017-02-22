@@ -1,4 +1,6 @@
-//custom pattern 
+
+    'use strict';
+    //custom pattern 
 function trim(str){
     return str.replace(/^\s+|\s+$/g, '');
 }
@@ -41,6 +43,7 @@ function showhideContain(){
         hideButtom.style.display = 'none'
     }
 }
+//Add data
 function processFormData() {
     var title_element = document.getElementById('title');
     var description_element = document.getElementById('description');
@@ -85,6 +88,7 @@ function processFormData() {
         description_val = " ";
     }
 }
+//Updata
 function processFormDataEdit(){
     var title = document.getElementById('title').value;
     var description = document.getElementById('description').value;
@@ -94,7 +98,8 @@ function processFormDataEdit(){
     localStorage.setItem('todo', JSON.stringify(todo));
     showhideContain();
     onload();
-}   
+} 
+//Edit
 function editTask(index) {
     create.style.display = "none";
     edit.style.display = "block";
@@ -104,6 +109,7 @@ function editTask(index) {
     document.getElementById('description').value = todo[index].description;
     editIndex = index; 
 }
+//Delete
 function deleteTask(index){
     var list = document.getElementById('delete');
     var parent = list.parentNode.parentNode;
@@ -144,6 +150,7 @@ function fullTextsearch() {
         }
     }
 }
+//Readio
 function myRadio(val){
     var arr = [];
     var allList = document.getElementsByTagName('li');
@@ -174,6 +181,7 @@ function myRadio(val){
         console.log(val.value);
     }  
 }
+//data view
 window.onload = function() {
     localhtml = ''; 
     if(localStorage.getItem("todo") === null) { // for initial stage todo is not present
@@ -217,3 +225,5 @@ window.onload = function() {
     document.getElementById("incomplete-tasks").innerHTML = localhtml;
      }
 };
+
+

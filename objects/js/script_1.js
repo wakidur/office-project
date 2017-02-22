@@ -18,8 +18,8 @@ perosn.name.forEach(function(index,value){
     console.log(index + ":" + value);
 });
 
-Wakidur:0
-Rahman:1
+//Wakidur:0
+//Rahman:1
 
 //-------------------
 var perosn = {

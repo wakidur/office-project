@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Angular practice</title>
+        <link rel="stylesheet" href="assets/css/style.css">
+        <script src="node_modules/angular/angular.js"></script>
+        <script src="app.js"></script>
+    </head>
+    <body>
+        <div ng-controller="todoListCont as todoList">
+            <h1>{{hello}}</h1>
+            <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
+            [<a href="" ng-click="todoList.archive()"> Archive </a>]
+            <ul class="unstyled">
+                <li ng-repeat="todo in todoList.todos">
+                    <label class="checkbox">
+                        <input type="checkbox" ng-model="todo.done">
+                        <span class="done-{{todo.done}}">{{todo.text}}</span>
+                    </label>
+                </li>
+            </ul>
+            <form ng-submit="todoList.addTodo()">
+                <input type="text" ng-model="todoList.todoText" placeholder="add new todo here">
+                <input type="submit" value="add">
+            </form>
+        </div>
+
+    </body>
+</html>

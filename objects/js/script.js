@@ -56,8 +56,9 @@
     person2.name;
     person2.greeting();
     
-    /*after the new objects have been created, the person1
-    and person2 variables contain the following object
+    /*
+     * after the new objects have been created, the person1
+       and person2 variables contain the following object
       
     {
         name: 'Bob',
@@ -74,7 +75,7 @@
     }
     */
    
-    function personFinished(first, last, age, gender,interests){
+    function personFinished(first, last, age, gender, interests){
         this.name = {
             first,
             last
@@ -132,68 +133,8 @@
 })()
 
 
-/*
- * 
-var human = {
-    name : "Waki",
-    age : 27,
-    dep : "Software"
-}
-var myCar = new Object();
-myCar.make = 'Ford';
-myCar.model = 'Mustang';
-myCar.year = 1969;
+//Object prototype
 
-var mynew = new Object();
-mynew['make'] = 'Volvo';
-mynew['model'] = 'Nice';
-mynew['year'] = 12;
-
-function showProps(obj, objectName){
-    var result = '';
-    for(var i in obj){
-        if(obj.hasOwnProperty(i)){
-            result += objectName + '. ' + i + ' = ' + obj[i] + '\n';
-        } else {
-            console.log("Empty object " + obj);
-        }
-        
-    }
-    return result;
-}
+(function(){})();
 
 
-showProps(human,"wakd");
-for (var i in human){
-    console.log(i + ":" + human[i]);
-}
-
-
-function listAllProperties(o) {
-    var a = "";
-}
-
-
-
-
-
-
-
-
-
-
-
-var obj = {
-    name : "Wakidur",
-    dob : new Date("1990-1-12")
-}
-
-Object.defineProperty(obj, 'age' , {
-    get: function(){
-        return (new Date().getFullYear() - this.dob.getFullYear());
-    }
-    
-});
-
-
-*/
