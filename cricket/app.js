@@ -11,12 +11,14 @@ angular.module('cricketInfo')
       .state('play', {
         url: '/play/:countryname',
         templateUrl: 'app/views/score.html',
-        controller: 'PlayCtrl'
+        controller: 'PlayCtrl',
+        controllerAs:'vm'
       })
       .state('play-history', {
         url: '/play/:toball/:over/:ball',
         templateUrl: 'app/views/play-history.html',
-        controller: 'PlayCtrl'
+        controller: 'PlayCtrl',
+        controllerAs:'vm'
       });
     $locationProvider.hashPrefix('');
 });

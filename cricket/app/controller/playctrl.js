@@ -1,6 +1,8 @@
+(function(angular){
 'use strict';
-angular.module('cricketInfo')
-        .controller('PlayCtrl', function ($stateParams, StatisticService, $scope) {
+angular.module('cricketInfo').controller('PlayCtrl', PlayCtrl)
+PlayCtrl.$inject = ['$scope', 'StatisticService', '$stateParams'];
+function PlayCtrl($scope, StatisticService, $stateParams) {
             var gameData = [];
             $scope.resetData = function () {
                 console.log('removeItem');
@@ -29,6 +31,8 @@ angular.module('cricketInfo')
             console.log('teamData', $scope.teamData);
             
 
-        });
+        };
+})(window.angular)
+
 
 
