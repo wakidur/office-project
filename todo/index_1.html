@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <link rel="icon" href="images/favicon.ico">
         <title>Todo List</title>
 
         <!-- Style link -->
@@ -43,6 +43,15 @@
                 <i class="fa fa-minus" aria-hidden="true"></i>
             </button>
             <div id="demo"></div>
+            <div class="form-group custom-search">
+                    <input type="text" class="form-control" id="textsearch" onkeyup="fullTextsearch()" placeholder="Search for names..">
+            </div>
+            <div class="form-group custom-radio">
+              
+                <input type="radio" name="gender" value="all" onchange="myRadio(this)" checked> All
+                <input type="radio" name="gender" onchange="myRadio(this)" value="check">check
+                <input type="radio" name="gender" onchange="myRadio(this)" value="uncheck">Uncheck
+            </div>
             <ul id="incomplete-tasks">
                     <li>
                         <div class="contain-box">
@@ -54,7 +63,7 @@
                             <button class="edit" onclick="editTask(this)">
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                             </button>
-                            <button class="delete">
+                            <button class="delete" id="delete" onclick="deleteTask(this)">
                                 <i class="fa fa-trash" aria-hidden="true"></i>
                             </button>
                         </div>

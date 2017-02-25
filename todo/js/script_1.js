@@ -11,6 +11,7 @@ function checkEmail(email){
     return false;
     }
 }
+
 //Global variable 
 var inputFormsection = document.getElementById('subscribe_frm');
 var showButtom = document.getElementById('add-btn');
@@ -21,6 +22,7 @@ var todo = [];
 var localhtml = "";
 var editIndex;
 
+   
 function showhideContain(){
     var vis = inputFormsection.style;
     document.getElementById('title').value = '';
@@ -78,18 +80,20 @@ function processFormData() {
         todo.push(object);
         localStorage.setItem('todo', JSON.stringify(todo));
         console.log("success");
-        getValue();
+        //getValue();
+        onload()
         showhideContain();
         title_val = " ";
         description_val = " ";
     }
 }
-
- function getValue() {
-    var data = window.localStorage.getItem('todo');
+/*
+function getValue() {
+    var data = localStorage.getItem('todo');
         data = JSON.parse(data);  
     for (var i = 0; i <data.length; i++) 
         {
+            console.log(data[i].title + '\n');
           localhtml += '<li>'+
                          '<div class="contain-box">'+
                               '<h2>' + data[i].title + '</h2>'+
@@ -100,50 +104,17 @@ function processFormData() {
                              '<button class="edit" onclick="editTask('+i+')">'+
                                   '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>'+
                               '</button>'+
-                             '<button class="delete">'+
+                             '<button class="delete" id="delete" onclick="deleteTask('+i+')">'+
                                   '<i class="fa fa-trash" aria-hidden="true"></i>'+
                               '</button>'+
                           '</div>'+
                       '</li>'
         }
     document.getElementById("incomplete-tasks").innerHTML = localhtml;
-}
-   
-window.onload = function() 
-   {
-      localhtml = ''; 
-    var data = window.localStorage.getItem('todo');
-          data = JSON.parse(data);
-          console.log(data.title + " " + data.description);
-          console.log(data);
-      for (var i = 0; i <data.length; i++) 
-      {
-         localhtml += '<li>'+
-                       '<div class="contain-box">'+
-                            '<h2>' + data[i].title + '</h2>'+
-                            '<p>'+ data[i].description+'</p>'+
-                       '</div>'+
-                       '<div class="function-box">'+
-                            '<input type="checkbox">'+
-                           '<button class="edit" onclick="editTask('+i+')">'+
-                                '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>'+
-                            '</button>'+
-                           '<button class="delete">'+
-                                '<i class="fa fa-trash" aria-hidden="true"></i>'+
-                            '</button>'+
-                        '</div>'+
-                    '</li>'
-      }
-    document.getElementById("incomplete-tasks").innerHTML = localhtml;
-
-   }
-//var myThis = " ";
-//var listItem = document.createElement("li");
-   // Edit an existing task
-   
-   
+} 
+*/
 function processFormDataEdit(){
-    console.log(editIndex);
+    //console.log(editIndex);
     var title = document.getElementById('title').value;
     var description = document.getElementById('description').value;
     todo = JSON.parse(localStorage.todo);
@@ -154,47 +125,183 @@ function processFormDataEdit(){
     onload();
 }   
 function editTask(index) {
-    
+    //console.log(index);
     create.style.display = "none";
     edit.style.display = "block";
-    
     inputFormsection.style.display = "block";
     todo = JSON.parse(localStorage.todo);
     document.getElementById('title').value = todo[index].title;
     document.getElementById('description').value = todo[index].description;
-    editIndex = index;
-    
-    /*
-  console.log("Edit Task...");
-  
-  var listItem = contex.parentNode.parentNode;
- // var listItem = this.parentNode.parentNode;
-   
-    console.log(listItem);
-
-  
-  var h = listItem.querySelector("h2");
-  var p = listItem.querySelector("p");
-
-  
-  var containsClass = listItem.classList.contains("editMode");
-    //if the class of the parent is .editMode 
-  if(containsClass) {
-      //switch from .editMode 
-      //Make label text become the input's value
-    //label.innerText = editInput.value;
-    //labeldes.innerText = editdesInput.value;
-    console.log("no edit Mode");
-  } else {
-      //Switch to .editMode
-      //input value becomes the label's text
-    //editInput.value = h.innerText;
-    //editdesInput.value = p.innerText;
-    console.log("H2" + h.innerHTML + "\n" + "P:" + p.innerHTML );
-  }
-  
-    // Toggle .editMode on the parent
-  listItem.classList.toggle("editMode");
- */
+    editIndex = index; 
 }
 
+
+function deleteTask(index){
+    var list = document.getElementById('delete');
+    var parent = list.parentNode.parentNode;
+    //console.log(parent);
+    //console.log("Index of" + index);
+    todo = JSON.parse(localStorage.todo);
+    todo.splice(index,1);
+    parent.remove();
+    localStorage.setItem('todo', JSON.stringify(todo));
+    alert(index);
+}
+//ChangeCheckbox
+function OnChangeCheckbox(checkbox) {
+    console.log(checkbox);
+    var checkboxx = document.getElementById('myCheckbox');
+    var parent = checkbox.parentNode.parentNode;
+    console.log(parent);
+    if (checkbox.checked) {
+       parent.classList.add("anotherclass");
+       console.log("The check box is checked.");
+    }
+    else {
+        parent.classList.remove("anotherclass");
+        console.log("The check box is not checked.");
+    }
+}
+//Full text search
+function fullTextsearch() {
+    var input, filter, ul, li, a,i;
+    input = document.getElementById("textsearch");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("incomplete-tasks");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("h2")[0];
+        console.log("Search text : " + a)
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+
+        }
+    }
+}
+function myRadio(val){
+    var arr = [];
+    var allList = document.getElementsByTagName('li');
+    for(var i = 0 ; i < allList.length ; i++){
+        console.log(allList[i]);
+        allList[i]
+    }
+    var allListClass = document.getElementsByClassName('anotherclass');
+    for(var j = 0 ; j < allListClass.length ; j++){
+        console.log(allListClass[j]);
+        allListClass[j]
+    }
+    
+    if(val.value == 'all'){
+        for(var i = 0 ; i < allList.length ; i++){
+        console.log(allList[i]);
+         allList[i].style.display = "block";
+    }
+    for(var j = 0 ; j < allListClass.length ; j++){
+        console.log(allListClass[j]);
+       allListClass[j].style.display = "block";
+    }
+       
+        
+        console.log("All value " + val.value)
+    }  else if  (val.value == 'check') {
+         for(var i = 0 ; i < allList.length ; i++){
+        console.log(allList[i]);
+          allList[i].style.display = "none";
+    }
+     for(var j = 0 ; j < allListClass.length ; j++){
+        console.log(allListClass[j]);
+        allListClass[j].style.display = "block";  
+    }
+       
+       
+        
+    } else if(val.value == 'uncheck') {
+        console.log("uncheck " + val.value)
+        for(var i = 0 ; i < allList.length ; i++){
+        console.log(allList[i]);
+        allList[i].style.display = "block";
+    }
+    for(var j = 0 ; j < allListClass.length ; j++){
+        console.log(allListClass[j]);
+        allListClass[j].style.display = "none";
+    }
+        
+        
+       
+       
+    } else{
+        console.log(val.value);
+    }
+    
+    //if( )
+}
+window.onload = function() {
+    localhtml = ''; 
+    if(localStorage.getItem("todo") === null) { // for initial stage todo is not present
+        console.log("value no present" + todo);
+    } else {
+        console.log( "no value exist" );
+        var data = localStorage.getItem('todo');
+        data = JSON.parse(data);
+
+         // sort by name
+         data.sort(function(a, b) {
+           var nameA = a.title.toUpperCase(); // ignore upper and lowercase
+           var nameB = b.title.toUpperCase(); // ignore upper and lowercase
+           if (nameA < nameB) {
+             return -1;
+           }
+           if (nameA > nameB) {
+             return 1;
+           }
+           // names must be equal
+           return 0;
+           
+         });
+        console.log(data);
+        console.log(data.title + " " + data.description);
+        console.log("Sort valu" + data);
+        console.log("type of " + typeof data);
+      for (var i = 0; i <data.length; i++) 
+      {
+          console.log(data[i].title + '\n');
+         localhtml += '<li>'+
+                       '<div class="contain-box">'+
+                            '<h2>' + data[i].title + '</h2>'+
+                            '<p>'+ data[i].description+'</p>'+
+                       '</div>'+
+                       '<div class="function-box">'+
+                            '<input  type="checkbox" onclick="OnChangeCheckbox (this)" id="myCheckbox">'+
+                           '<button class="edit" onclick="editTask('+i+')">'+
+                                '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>'+
+                            '</button>'+
+                           '<button class="delete" id="delete" onclick="deleteTask('+i+')">'+
+                                '<i class="fa fa-trash" aria-hidden="true"></i>'+
+                            '</button>'+
+                        '</div>'+
+                    '</li>'
+      }
+    document.getElementById("incomplete-tasks").innerHTML = localhtml;
+     }
+};
+//var myCheckbos = document.querySelectorAll('input[type=checkbox]');
+//for(var i = 0 ; i < myCheckbos.length; i++){
+//    var result = 0;
+//    result += myCheckbos[i].checked;
+//    console.log("Chekbox Result" + result);
+//    }
+//if (myCheckbos.checked) {
+//       console.log("The check box is checked dddddddddddd.");
+//       for(var i = 0 ; i < myCheckbos.length; i++){
+//        var result = 0;
+//            result += myCheckbos[i].checked;
+//            console.log("Chekbox Result" + result);
+//        }
+//    }
+//    else {
+//        console.log("The check box is not checked.");
+//    }
+
+//document.querySelectorAll('li.anotherclass');

@@ -463,10 +463,23 @@ template {
 ul{
     margin: 0px;
     padding: 0px;
+    border-top: 1px solid;
 }
-ul li{
+
+ul li {
     list-style: none;
+    overflow: hidden;
+    padding: 20px 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
+ul li.anotherclass{
+    background-color: aquamarine;
+}
+ul li.anotherclass h2{
+     text-decoration: line-through;
+}
+
 /* My own style */ 
 * {
   -webkit-box-sizing: border-box;
@@ -560,4 +573,23 @@ textarea.form-control {
 }
 function-box{
     width: 30%;
+}
+.custom-search{
+    padding: 60px 10px;
+    background-color: lightblue;
+    margin-top: 10px;
+}
+.custom-radio{
+    text-align: center;
+    width: 50%;
+    margin: 10px auto;
+    padding: 30px;
+    background-color: aliceblue;
+    border-bottom: 2px solid #09c;
+}
+.custom-radio input{
+    display: inline-block;
+    margin-left: 40px;
+    
+    
 }

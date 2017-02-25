@@ -1,0 +1,38 @@
+<div class="container"> 
+    
+    <form>
+        <label>Country1:</label>
+        
+        <div class="sidebyside">
+          <input placeholder="country1" ng-model="game.country1" type="text" class="form-control" id="country1">
+        </div>
+
+        <div class="sidebyside">
+          <div class="radio">
+            <label class="radio-inline control-label">
+              <input type="radio" ng-model="game.to_bowl" name="to_bowl" id="a" ng-value="game.country1">
+            </label>
+          </div>
+        </div>
+
+        <br>
+
+        <label>Country2:</label>
+        
+        <div class="sidebyside">
+          <input placeholder="country2" ng-model="game.country2" type="text" class="form-control" id="country2">
+        </div>
+
+        <div class="sidebyside">
+          <div class="radio">
+            <label class="radio-inline control-label">
+              <input type="radio" ng-model="game.to_bowl" name="to_bowl" id="b" ng-value="game.country2">
+            </label>
+          </div>
+        </div>
+    </form>
+
+    <div>
+      <a href="#/play" class="btn btn-default" ng-click="setGame(game)">Play</a>
+    </div>
+</div>
