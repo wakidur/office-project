@@ -1,4 +1,5 @@
-'use strict';
+(function(angular){
+    'use strict';
 angular.module('cricketInfo')
         .controller('PlayCtrl', function ($stateParams, StatisticService, $scope) {
             var gameData = [];
@@ -30,5 +31,7 @@ angular.module('cricketInfo')
             
 
         });
+})(window.angular);
+
 
 

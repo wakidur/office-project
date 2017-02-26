@@ -1,4 +1,5 @@
-'use strict';
+(function(angular){
+    'use strict';
 angular.module('cricketInfo')
 .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     $urlRouterProvider.otherwise('/');
@@ -20,3 +21,4 @@ angular.module('cricketInfo')
       });
     $locationProvider.hashPrefix('');
 });
+})(window.angular);

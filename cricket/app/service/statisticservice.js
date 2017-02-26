@@ -1,4 +1,5 @@
-'use strict';
+(function(angular){
+    'use strict';
 angular.module('cricketInfo')
         .service('StatisticService', function($filter) {
    var scoreArray = [0,1,2,3,4,6,'W','WD','NB'];
@@ -133,5 +134,7 @@ angular.module('cricketInfo')
       
     }
   });
+})(window.angular);
+
 
 

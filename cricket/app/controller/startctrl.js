@@ -1,4 +1,5 @@
-'use strict';
+(function(angular){
+  'use strict';
 angular.module('cricketInfo')
     .controller('StartCtrl', function ( StatisticService, $scope) {
        
@@ -17,5 +18,7 @@ angular.module('cricketInfo')
             localStorage.setItem("teamData", JSON.stringify(game));
         }; 
     });
+})(window.angular);
+
 
 
