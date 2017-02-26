@@ -1,7 +1,8 @@
+(function(angular){
 'use strict';
-angular.module('cricketInfo')
-    .controller('StartCtrl', function ( StatisticService, $scope) {
-       
+angular.module('cricketInfo').controller('StartCtrl', StartCtrl)
+StartCtrl.$inject = ['$scope', 'StatisticService'];
+function StartCtrl($scope, StatisticService){
         $scope.game = {
             country1: 'Bangladesh',
             country2: 'India',
@@ -16,6 +17,6 @@ angular.module('cricketInfo')
             console.log(game);
             localStorage.setItem("teamData", JSON.stringify(game));
         }; 
-    });
-
+    };
+})(window.angular)
 

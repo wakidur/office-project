@@ -1,6 +1,8 @@
+(function(angular){
 'use strict';
-angular.module('cricketInfo')
-        .service('StatisticService', function($filter) {
+angular.module('cricketInfo').service('StatisticService', StatisticService);
+StatisticService.$inject = ['$filter'];
+function StatisticService($filter) {
    var scoreArray = [0,1,2,3,4,6,'W','WD','NB'];
    if(JSON.parse(localStorage.getItem("gameData")) == null){
       var statistics = [];
@@ -132,6 +134,8 @@ angular.module('cricketInfo')
       }
       
     }
-  });
+  };
+})(window.angular)
+
 
 
